@@ -1,0 +1,51 @@
+name: Format Check
+
+on:
+  pull_request:
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the actual PR branch content
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "22.x"
+
+      - run: npm install
+      - run: npm run format
+
+      - name: Check for uncommitted changes
+        id: format_check
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Formatting issues detected"
+            echo "formatted=false" >> $GITHUB_OUTPUT
+          else
+            echo "Code is formatted"
+            echo "formatted=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment on PR if formatting is required
+        if: steps.format_check.outputs.formatted == 'false'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            👋 **Formatting check failed**
+
+            It looks like this PR has formatting issues. Please run:
+
+            ```
+            npm run format
+            ```
+
+            ...and push the changes.
+
+            _This check is in place to ensure consistent code style._
