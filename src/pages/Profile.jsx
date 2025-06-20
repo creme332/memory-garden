@@ -104,9 +104,11 @@ export default function Profile() {
                 </svg>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">
-                  Memory Garden
-                </h1>
+                <Link to={"/"}>
+                  <h1 className="text-2xl font-bold text-gray-900">
+                    Memory Garden
+                  </h1>
+                </Link>
                 <p className="text-sm text-gray-600">
                   Your emotional journey dashboard
                 </p>

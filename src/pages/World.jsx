@@ -52,9 +52,9 @@ export default function World() {
   const { journalId } = useParams();
 
   /**
-   * Whether or not welcome message is visible.
+   * Whether or not welcome modal is visible.
    */
-  const [showWelcome, setShowWelcome] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
 
   /**
    * Whether or not form for creating/editing a memory is visible.
@@ -110,13 +110,10 @@ export default function World() {
     -2, 2, -2
   ]);
 
-  // Add these state variables:
   const [showCamera, setShowCamera] = useState(false);
 
-  // Add this handler:
   const handlePhotoCapture = ({ photo, emotion }) => {
     console.log("Photo captured with emotion:", emotion);
-    setShowWelcome(false);
 
     // set initial position of character
     if (emotion === "happy") {
@@ -209,6 +206,7 @@ export default function World() {
     db.entries.delete(entryId);
   };
 
+  // when page is loaded for the first time, fetch entries from database
   useEffect(() => {
     async function fetchJournal() {
       const entries = await db.entries
@@ -223,13 +221,21 @@ export default function World() {
       }
 
       setJournal(fetchedJournal);
-      console.log("Fetched journal", fetchedJournal);
-
-      console.log("Initial entries", entries);
       setJournalEntries(entries);
+    }
+
+    async function start() {
+      setLoading(true);
+      await fetchJournal();
+
       setLoading(false);
     }
 
+    start();
+  }, [journalId]);
+
+  // add keyboard shortcut listener
+  useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.ctrlKey && e.key.toLowerCase() === "f" && !showMemoryForm) {
         e.preventDefault(); // Optional: prevent default "Find" behavior
@@ -262,10 +268,8 @@ export default function World() {
     };
 
     window.addEventListener("keydown", handleKeyPress);
-
-    fetchJournal();
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [showMemoryForm, journalId]);
+  }, [showMemoryForm]);
 
   if (!journalId) {
     alert("Missing journal ID");
@@ -425,7 +429,10 @@ export default function World() {
       {/* camera */}
       <CameraCapture
         isOpen={showCamera}
-        onClose={() => setShowCamera(false)}
+        onClose={() => {
+          setShowCamera(false);
+          setShowWelcome(false); // allow user to bypass camera
+        }}
         onCapture={handlePhotoCapture}
       />
 

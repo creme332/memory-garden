@@ -1,7 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
-import MissingUser from "./pages/MissingUser";
 import Profile from "./pages/Profile";
 import World from "./pages/World";
 import HomePage from "./pages/HomePage";

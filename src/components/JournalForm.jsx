@@ -15,7 +15,6 @@ export default function JournalForm({
   const isCreatingNewJournal = !initialJournal;
 
   const [title, setTitle] = useState(initialJournal?.title || "");
-  const [isPublic, setIsPublic] = useState(initialJournal?.isPublic || false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +27,6 @@ export default function JournalForm({
 
     // clear values
     setTitle("");
-    setIsPublic(false);
     setShowJournalForm(false);
   };
 
@@ -49,18 +47,6 @@ export default function JournalForm({
                 className="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
-            </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                id="isPublic"
-                checked={isPublic}
-                onChange={(e) => setIsPublic(e.target.checked)}
-                className="h-4 w-4 text-blue-600"
-              />
-              <label htmlFor="isPublic" className="text-sm text-gray-700">
-                Make Public
-              </label>
             </div>
             <div className="flex justify-end gap-2">
               <button

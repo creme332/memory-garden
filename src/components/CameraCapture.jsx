@@ -149,7 +149,9 @@ const CameraCapture = ({ isOpen, onClose, onCapture }) => {
             <div className="p-2 bg-blue-100 rounded-full">
               <Camera className="w-5 h-5 text-blue-600" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-800">Camera</h2>
+            <h2 className="text-xl font-semibold text-gray-800">
+              Face Emotion Detection
+            </h2>
           </div>
           <button
             onClick={onClose}
