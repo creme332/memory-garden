@@ -1,51 +1,40 @@
-# Memory Garden
-
-**Transform your memories into a beautiful 3D world where each emotion has its own unique landscape**
+<h1 align="center">Memory Garden 🌱</h1>
 
 Memory Garden is an immersive 3D journaling experience where your memories come to life as trees in different emotional landscapes. Each journal entry is planted in one of four distinct emotional zones, creating a living, breathing representation of your inner world.
 
-## Application Architecture
+[🚀 Launch the Experience](https://creme332.github.io/memory-garden)
 
-### Frontend
-- **React** with modern hooks and functional components
-- **Three.js + React Three Fiber** for 3D rendering and scene management
-- **Rapier Physics** for realistic object interactions and character movement
-- **Tailwind CSS** for responsive UI styling
-- **IndexedDB (via Dexie)** for privacy-first local data storage
+## Screenshots
 
-### Backend
-- **No Traditional Backend** - Privacy-first architecture with local storage
-- **Ollama Integration** - Local AI inference for therapist functionality
-- **Face-API.js** - Client-side emotion detection processing
+![](screenshots/tree-view.png)
+![](screenshots/ai-and-timeline.png)
+![Landing page](screenshots/landing-page.png)
+![Profile page](screenshots/profile-page.png)
 
-## Models and Libraries
+## Features
 
-### Core Libraries
-- **React Three Fiber** - 3D scene management in React
-- **@react-three/drei** - Utility components for Three.js
-- **@react-three/rapier** - Physics engine integration
-- **face-api.js** - Real-time facial emotion detection
-- **Dexie** - IndexedDB wrapper for structured data storage
+- **Privacy-First Architecture** – No traditional backend; all data stored locally with IndexedDB via Dexie
+- **Emotion-Based 3D Worlds** – Real-time environments react to user emotion using React Three Fiber and procedural terrain generation
+- **On-Device AI Therapist** – Local Gemma3:1b model offers private, context-aware responses without internet dependency
+- **Facial Emotion Detection** – Detects 7 emotions using face-api.js entirely on the client side with no data upload
+- **Offline and Low-Latency** – Fully functional offline after initial load with fast response times from local AI
+- **Emotion-Aware Audio** – Unique ambient music plays in each terrain to enhance emotional resonance
+- **Modular Emotion Zones** – Each emotion zone is an independent scene with customized visual and auditory assets
+- **Progressive Enhancement** – Core journaling and navigation features work even without AI or face detection
 
-### AI Models
-- **Gemma3:1b** (via Ollama) - Local language model for therapist conversations
-- **TinyFaceDetector** - Lightweight face detection model
-- **FaceExpressionNet** - Emotion classification model (7 emotions: happy, sad, angry, fearful, disgusted, surprised, neutral)
+## Quick Start
 
-## Methodology
+```bash
+# Install dependencies
+npm install --legacy-peer-deps
 
-### Development Approach
-1. **Privacy-First Design** - All personal data remains on user's device
-2. **Modular Terrain System** - Each emotion zone as independent component
-3. **Procedural Generation** - Dynamic object placement using spatial algorithms
-4. **Progressive Enhancement** - Core functionality works without AI features
-5. Immersive Audio Design – Each terrain features unique background music to reflect the user’s emotion
+# Start the development server
+npm run dev
 
-
-### Data Flow
-```
-User Input → Emotion Detection → Zone Selection → 3D Rendering → Local Storage
-         ↘ AI Analysis → Therapist Responses → Cached Locally
+# Set up the local AI
+# Make sure Ollama is installed, then run:
+ollama pull gemma3:1b
+ollama serve
 ```
 
 ## Model Performance
@@ -80,7 +69,6 @@ User Input → Emotion Detection → Zone Selection → 3D Rendering → Local S
 - **Camera Required**: Emotion features unavailable without camera access
 
 ### User Experience
-- **Learning Curve**: 3D navigation may be challenging for some users
 - **Resource Intensive**: High GPU usage during extended sessions
 - **No Cross-Device Sync**: Data isolation between devices
 
@@ -108,20 +96,6 @@ User Input → Emotion Detection → Zone Selection → 3D Rendering → Local S
 - **End-to-End Encryption** - Secure data export/import
 - **Biometric Authentication** - Optional device-level security
 
-## Quick Start
-
-```bash
-# Install dependencies
-npm install --legacy-peer-deps
-
-# Start the development server
-npm run dev
-
-# Set up the local AI
-# Make sure Ollama is installed, then run:
-ollama pull gemma3:1b
-ollama serve
-```
 
 ## Contributors
 
