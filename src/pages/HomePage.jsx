@@ -242,9 +242,13 @@ const HomePage = () => {
               Transform your memories into beautiful 3D experiences
             </p>
             <div className="flex justify-center space-x-6 text-sm text-gray-400">
-              <span>© 2025 Memory Garden</span>
-              <span>•</span>
-              <span>Made with ❤️ for better mental health</span>
+              <a
+                href="https://github.com/creme332/memory-garden"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>© 2025 Memory Garden – Open Source on GitHub</span>
+              </a>
             </div>
           </div>
         </div>
